@@ -32,17 +32,24 @@ npm install
 ### Basic Usage
 
 1. Create a JSON configuration file (see examples in `config.json` and `config2.json`)
-2. Run the generator:
+2. Run the generator using npm:
+```bash
+npm run generate
+```
+
+This command will use `config.json` as the default input and generate `server.js` as the output.
+
+3. To use a custom configuration file:
 ```bash
 node generate_server.js <config-file.json> [output-file.js]
 ```
 
 For example:
 ```bash
-node generate_server.js config.json server.js
+node generate_server.js config2.json custom-server.js
 ```
 
-3. Run the generated server:
+4. Run the generated server:
 ```bash
 node server.js
 ```
@@ -84,21 +91,12 @@ The configuration uses a node-based format where each node represents a componen
 }
 ```
 
-## Testing
-
-Run the tests to verify the generator functionality:
-
-```bash
-npm test
-```
-
 ## Project Structure
 
 - `generate_server.js`: The main script that generates the server
 - `config.json`: Example server configuration
 - `config2.json`: Alternative example configuration
 - `server.js`: Generated server (after running the generator)
-- `test/generate_server.test.js`: Tests for the generator
 
 ## License
 
