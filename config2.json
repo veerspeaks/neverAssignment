@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {"id": "1", "name": "Start", "source": null, "target": "2", "properties": {"type": "entry"}},
+    {"id": "2", "name": "CORS Middleware", "source": "1", "target": "3", "properties": {"type": "middleware", "allowed_origins": ["http://localhost:3000", "https://example.com"]}},
+    {"id": "3", "name": "Logging Middleware", "source": "2", "target": ["4", "8"], "properties": {"type": "middleware", "log_requests": true}},
+    {"id": "4", "name": "Auth Middleware", "source": "3", "target": ["5", "6", "7"], "properties": {"type": "middleware", "auth_required": true}},
+    {"id": "5", "name": "Products Route", "source": "4", "target": "10", "properties": {"endpoint": "/api/products", "method": "GET"}},
+    {"id": "6", "name": "Orders Route", "source": "4", "target": "10", "properties": {"endpoint": "/api/orders", "method": "GET"}},
+    {"id": "7", "name": "User Profile Route", "source": "4", "target": "10", "properties": {"endpoint": "/api/profile", "method": "GET"}},
+    {"id": "8", "name": "Public Routes", "source": "3", "target": ["9", "10"], "properties": {"type": "middleware"}},
+    {"id": "9", "name": "Home Route", "source": "8", "target": "10", "properties": {"endpoint": "/", "method": "GET", "auth_required": false}},
+    {"id": "10", "name": "Admin Auth Middleware", "source": ["5", "6", "8"], "target": ["11", "12"], "properties": {"type": "middleware", "admin_required": true}},
+    {"id": "11", "name": "Admin Dashboard", "source": "10", "target": "13", "properties": {"endpoint": "/api/admin/dashboard", "method": "GET"}},
+    {"id": "12", "name": "Admin Settings", "source": "10", "target": "13", "properties": {"endpoint": "/api/admin/settings", "method": "GET"}},
+    {"id": "13", "name": "Response Dispatcher", "source": ["7", "9", "11", "12"], "target": "14", "properties": {"type": "dispatcher"}},
+    {"id": "14", "name": "End", "source": "13", "target": null, "properties": {"type": "exit"}}
+  ]
+} 
